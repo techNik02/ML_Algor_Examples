@@ -95,3 +95,13 @@ max_iters = 10
 # Initialize centroids
 initial_centroids = kMeansInitCentroids(X, K)
 centroids, idx = runKMeans(X, initial_centroids, max_iters, plot_progress=False)
+
+# Image Compression
+idx = findClosestCentroids(X, centroids)
+X_recovered = centroids[idx,:]
+X_recovered = X_recovered.reshape(original_shape)
+
+# Display 
+f, (ax1, ax2) = plt.subplots(2, sharex=True, sharey=True)
+ax1.imshow(A)
+ax2.imshow(X_recovered)
